@@ -1,0 +1,40 @@
+# Ignora i moduli Node.js
+node_modules/
+
+# File di log
+npm-debug.log
+yarn-error.log
+
+# Cartelle di build e distribuzione
+dist/
+build/
+out/
+
+# Report di copertura del codice
+coverage/
+
+# File di ambiente
+.env
+.env.*
+
+# File di configurazione dell'editor
+.vscode/
+.idea/
+
+# File di backup e temporanei
+*.bak
+*.old
+*.orig
+*.swp
+*.swo
+
+# File compressi
+*.tgz
+*.tar.gz
+
+# File di certificato o chiavi
+*.pem
+*.key
+
+# File di sistema
+.DS_Store
