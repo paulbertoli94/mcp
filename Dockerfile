@@ -1,13 +1,12 @@
-FROM node:18-alpine
+FROM ghcr.io/sparfenyuk/mcp-proxy:latest
 
-WORKDIR /app
+# Install the 'uv' package
+RUN python3 -m ensurepip && pip install --no-cache-dir uv
 
-COPY package.json ./
+ENV PATH="/usr/local/bin:$PATH" \
+    UV_PYTHON_PREFERENCE=only-system
 
-RUN npm install
+RUN apk add --no-cache nodejs npm && npm install -g npx
+RUN npm install -g @modelcontextprotocol/server-memory
 
-COPY . ./
-
-EXPOSE 3000
-
-CMD ["node", "index.js"]
+ENTRYPOINT [ "mcp-proxy" ]

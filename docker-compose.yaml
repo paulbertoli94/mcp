@@ -1,0 +1,25 @@
+services:
+  mcp-server-fetch:
+    image: ghcr.io/paulbertoli94/mcp:latest
+    network_mode: host
+    restart: unless-stopped
+    ports:
+      - "8096:8096"
+    command: "--pass-environment --sse-port=8096 --sse-host 0.0.0.0 uvx mcp-server-fetch"
+  brave:
+    image: ghcr.io/paulbertoli94/mcp:latest
+    network_mode: host
+    restart: unless-stopped
+    ports:
+      - "8097:8097"
+    environment:
+      BRAVE_API_KEY: "YOUR_API_KEY_HERE"
+    command:
+      - "--pass-environment"
+      - "--sse-port=8097"
+      - "--sse-host=0.0.0.0"
+      - "--"
+      - "npx"
+      - "-y"
+      - "@modelcontextprotocol/server-memory"
+      - "mcp-server-memory"
