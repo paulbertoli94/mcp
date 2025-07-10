@@ -1,6 +1,8 @@
 services:
   mcp-server-fetch:
-    image: ghcr.io/paulbertoli94/mcp:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     network_mode: host
     restart: unless-stopped
     ports:
@@ -13,7 +15,9 @@ services:
       - "uvx"
       - "mcp-server-fetch"
   mcp-server-memory:
-    image: ghcr.io/paulbertoli94/mcp:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     network_mode: host
     restart: unless-stopped
     ports:
@@ -28,13 +32,15 @@ services:
       - "@modelcontextprotocol/server-memory"
       - "mcp-server-memory"
   brave-search-mcp:
-    image: ghcr.io/paulbertoli94/mcp:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     network_mode: host
     restart: unless-stopped
     ports:
       - "8098:8098"
     environment:
-      BRAVE_API_KEY: "suca"
+      BRAVE_API_KEY: "BSAMmEB_JXx_v_QpW3bidvpAhzgGm41"
     command:
       - "--pass-environment"
       - "--port=8098"
